@@ -7,7 +7,9 @@ import javax.swing.JPanel;
 import java.io.*;
 import java.nio.file.Files;
 import java.util.*;
+import static java.util.Arrays.fill;
 import java.util.prefs.Preferences;
+import java.util.stream.IntStream;
 
 public class functions {
 
@@ -280,6 +282,11 @@ public class functions {
 				JOptionPane.ERROR_MESSAGE);
 
 	}
+        
+        static void cout (String in){
+            System.out.println (in);
+            
+        }
 
 	public static void exit() {
 		// Custom button text
@@ -302,16 +309,24 @@ public class functions {
 	}
 
 	public static void check() {
+            
 		boolean right = true;
+                                                                     
 
+                
+                
+                //check rows
 		for (int a = 0; a < 9; a++) {
+                    
+                    int sum = 0;
 			for (int b = 0; b < 9; b++) {
-				if (Main.answers[a][b] != Main.current[a][b]) {
-					right = false;
-				}
-			}
+                                byte [] rownumbers = {0,0,0,0,0,0,0,0,0}; 
+                                if (Main.current[a][b] != 99) rownumbers [Main.current[a][b]-1] = 1;
+                                for (byte i : rownumbers) sum += i;
+			}                        
+                    cout(String.valueOf(sum));
 		}
-		System.out.println(right);
+//		System.out.println(right);
 		
 		if (right){
 			message("Congrates!","You have successfully completed the puzzle");
